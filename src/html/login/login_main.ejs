@@ -1,0 +1,51 @@
+<% include ../static/header %>
+<div class="row">
+    <div class="large-12 columns">
+        <% if(pageErrorMessage.length > 0) { %>
+        <p><%= pageErrorMessage %></p>
+        <% } %>
+    </div>
+    <div class="large-6 columns">
+        <h3>Login</h3>
+        <form method="post" role="form">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Email
+                        <input type="text" placeholder="Email" name="username">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Password
+                        <input type="password" placeholder="Password" name="password">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <input type="submit" class="button" value="Login">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="large-6 columns">
+        <h3>New User Login</h3>
+        <form method="post" role="form">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Email
+                        <input type="text" placeholder="Email" name="username">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Password
+                        <input type="password" placeholder="Password" name="password">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <input type="submit" class="button" value="Create Profile">
+                </div>
+            </div>
+            <input type="hidden" value="newUser">
+        </form>
+    </div>
+</div>
+<% include ../static/script %>
+<% include ../static/footer %>

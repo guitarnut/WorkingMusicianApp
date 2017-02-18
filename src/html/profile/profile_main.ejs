@@ -1,8 +1,7 @@
 <% include ../static/header %>
 <div class="row">
     <div class="large-12 columns">
-        <h3><%= profile.first_name %> <%= profile.last_name %>, <%= profile.profession %> (<%= profile.profile_views %>
-            )</h3>
+        <h3><%= profile.first_name %> <%= profile.last_name %>, <%= profile.profession %> (<%= profile.profile_views %>)</h3>
         <h4><%= profile.city %>, <%= profile.state %></h4>
 
         <% if(profile.availability) { %>

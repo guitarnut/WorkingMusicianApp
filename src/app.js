@@ -3,6 +3,7 @@
  */
 
 let express = require("express");
+let session = require('express-session');
 let path = require("path");
 let logger = require("morgan");
 let http = require("http");
@@ -10,6 +11,7 @@ let bodyParser = require("body-parser");
 
 // routers
 let defaultRouter = require('./js/routes/routes_default');
+let loginRouter = require('./js/routes/routes_login');
 let userRouter = require('./js/routes/routes_profile');
 
 let app = express();
@@ -17,22 +19,27 @@ let app = express();
 app.set("views", path.resolve(__dirname, "html/"));
 app.set("view engine", "ejs");
 
-// let entries = [];
-// app.locals.entries = entries;
 app.locals.serverError = "";
 app.locals.application = {};
+app.locals.profile = {};
+app.locals.authenticated = false;
+app.locals.username = "";
+app.locals.pageErrorMessage = "";
 
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-
-app.get("/", (req, res)=> {
-    res.render("static/index");
-});
+app.use(session({
+    name: 'working-musician',
+    secret: 'shhh',
+    resave: false,
+    saveUninitialized: true
+}));
 
 // routes
 app.use("/", defaultRouter);
+app.use("/login", loginRouter);
 app.use("/profile", userRouter);
 
 // error handling

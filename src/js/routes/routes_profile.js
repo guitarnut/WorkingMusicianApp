@@ -24,6 +24,15 @@ function populateFormData(applicationData) {
     });
 }
 
+// check auth
+api.use((req, res, next)=> {
+   if(!req.app.locals.authenticated) {
+       res.redirect("/login?redirect="+req.originalUrl);
+   } else {
+       next();
+   }
+});
+
 api.get("/create", (req, res) => {
     populateFormData(req.app.locals.application)
         .then(() => {

@@ -20,8 +20,16 @@
         <ul class="menu">
             <li><a href="/">Home</a></li>
             <li><a href="/search">Search Profiles</a></li>
-            <% if(profile.id) { %>
+            <% if(authenticated) { %>
             <li><a href="/profile/view/<%= profile.id %>">Account</a></li>
+            <% } %>
+            <% if(!authenticated) { %>
+            <li><a href="/login">Login</a></li>
+            <% } else { %>
+            <li><a href="/login/end">Logout</a></li>
+            <% } %>
+            <% if(authenticated) { %>
+            <li><%= username %></li>
             <% } %>
         </ul>
     </div>
