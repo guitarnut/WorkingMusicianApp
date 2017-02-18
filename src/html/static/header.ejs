@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Working Musician</title>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">
+</head>
+<body>
+<div class="row">
+    <div class="large-12 columns">
+        <h1>The Working Musician</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+            <li><a href="/search">Search Profiles</a></li>
+            <% if(profile.id) { %>
+            <li><a href="/profile/view/<%= profile.id %>">Account</a></li>
+            <% } %>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+<% include ../static/header %>
+<div class="row">
+    <div class="large-12 columns">
+        <h3>Update Profile</h3>
+        <form method="post" role="form">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>First Name
+                        <input type="text" value="<%= profile.first_name %>" name="first_name">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Last Name
+                        <input type="text" value="<%= profile.last_name %>" name="last_name">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>City
+                        <input type="text" value="<%= profile.city %>" name="city">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>State
+                        <input type="text" value="<%= profile.state %>" name="state">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Availability
+                        <select name="availability" multiple>
+                            <% if(application.formData.availability) { %>
+                            <% application.formData.availability.forEach(function(val) { %>
+                            <% if(profile.availability && profile.availability === val) { %>
+                            <option value="<%= val %>" selected><%= val %></option>
+                            <% } else { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% } %>
+                            <% }) %>
+                            <% } %>
+                        </select>
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Profession
+                        <select name="profession">
+                            <% if(application.formData.profession) { %>
+                            <% application.formData.profession.forEach(function(val) { %>
+                            <% if(profile.profession && profile.profession.indexOf(val) > -1) { %>
+                            <option value="<%= val %>" selected><%= val %></option>
+                            <% } else { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% } %>
+                            <% }) %>
+                            <% } %>
+                        </select>
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Travel
+                        <select name="travel">
+                            <% if(application.formData.travel) { %>
+                            <% application.formData.travel.forEach(function(val) { %>
+                            <% if(profile.travel && profile.travel.indexOf(val) > -1) { %>
+                            <option value="<%= val %>" selected><%= val %></option>
+                            <% } else { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% } %>
+                            <% }) %>
+                            <% } %>
+                        </select>
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Genres
+                        <select name="genres" multiple>
+                            <% if(application.formData.genres) { %>
+                            <% application.formData.genres.forEach(function(val) { %>
+                            <% if(profile.genres && profile.genres.indexOf(val) > -1) { %>
+                            <option value="<%= val %>" selected><%= val %></option>
+                            <% } else { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% } %>
+                            <% }) %>
+                            <% } %>
+                        </select>
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Vocals
+                        <select name="vocals" multiple>
+                            <% if(application.formData.vocals) { %>
+                            <% application.formData.vocals.forEach(function(val) { %>
+                            <% if(profile.vocals && profile.vocals.indexOf(val) > -1) { %>
+                            <option value="<%= val %>" selected><%= val %></option>
+                            <% } else { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% } %>
+                            <% }) %>
+                            <% } %>
+                        </select>
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Instruments
+                        <select name="instruments" multiple>
+                            <% if(application.formData.instruments) { %>
+                            <% application.formData.instruments.forEach(function(val) { %>
+                            <% if(profile.instruments && profile.instruments.indexOf(val) > -1) { %>
+                            <option value="<%= val %>" selected><%= val %></option>
+                            <% } else { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% } %>
+                            <% }) %>
+                            <% } %>
+                        </select>
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Photo
+                        <input type="text" value="<%= profile.profile_picture %>" name="profile_picture">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <input type="submit" class="button" value="Update Profile">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<% include ../static/script %>
+<% include ../static/footer %>

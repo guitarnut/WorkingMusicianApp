@@ -1,0 +1,106 @@
+<% include ../static/header %>
+<div class="row">
+    <div class="large-12 columns">
+        <h3>Create Profile</h3>
+        <form method="post" role="form">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>First Name
+                        <input type="text" placeholder="First name" name="first_name">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <label>Last Name
+                        <input type="text" placeholder="Last name" name="last_name">
+                    </label>
+                </div>
+                <% if(application.formData.availability) { %>
+                <div class="large-12 columns">
+                    <label>Availability
+                        <select name="availability" multiple>
+                            <% application.formData.availability.forEach(function(val) { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% }) %>
+                        </select>
+                    </label>
+                </div>
+                <% } %>
+                <div class="large-12 columns">
+                    <label>City
+                        <input type="text" placeholder="Last name" name="city">
+                    </label>
+                </div>
+                <% if(application.formData.profession) { %>
+                <div class="large-12 columns">
+                    <label>Profession
+                        <select name="profession">
+                            <% application.formData.profession.forEach(function(val) { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% }) %>
+                        </select>
+                    </label>
+                </div>
+                <% } %>
+                <div class="large-12 columns">
+                    <label>State
+                        <input type="text" placeholder="Last name" name="state">
+                    </label>
+                </div>
+                <% if(application.formData.travel) { %>
+                <div class="large-12 columns">
+                    <label>Travel
+                        <select name="travel">
+                            <% application.formData.travel.forEach(function(val) { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% }) %>
+                        </select>
+                    </label>
+                </div>
+                <% } %>
+                <% if(application.formData.genres) { %>
+                <div class="large-12 columns">
+                    <label>Genres
+                        <select name="genres" multiple>
+                            <% application.formData.genres.forEach(function(val) { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% }) %>
+                        </select>
+                    </label>
+                </div>
+                <% } %>
+                <% if(application.formData.vocals) { %>
+                <div class="large-12 columns">
+                    <label>Vocals
+                        <select name="vocals" multiple>
+                            <% application.formData.vocals.forEach(function(val) { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% }) %>
+                        </select>
+                    </label>
+                </div>
+                <% } %>
+                <% if(application.formData.instruments) { %>
+                <div class="large-12 columns">
+                    <label>Instruments
+                        <select name="instruments" multiple>
+                            <% application.formData.instruments.forEach(function(val) { %>
+                            <option value="<%= val %>"><%= val %></option>
+                            <% }) %>
+                        </select>
+                    </label>
+                </div>
+                <% } %>
+                <div class="large-12 columns">
+                    <label>Photo
+                        <input type="text" placeholder="Last name" name="profile_picture">
+                    </label>
+                </div>
+                <div class="large-12 columns">
+                    <input type="submit" class="button" value="Create Profile">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<% include ../static/script %>
+<% include ../static/footer %>
