@@ -16,21 +16,8 @@
     </div>
 </div>
 <div class="row">
-    <div class="large-12 columns">
-        <ul class="menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="/search">Search Profiles</a></li>
-            <% if(authenticated) { %>
-            <li><a href="/profile/view/<%= profile.id %>">Account</a></li>
-            <% } %>
-            <% if(!authenticated) { %>
-            <li><a href="/login">Login</a></li>
-            <% } else { %>
-            <li><a href="/login/end">Logout</a></li>
-            <% } %>
-            <% if(authenticated) { %>
-            <li><%= username %></li>
-            <% } %>
-        </ul>
-    </div>
+    <img src="/marquees/1.jpg">
+</div>
+<div class="row">
+    <% include menu %>
 </div>

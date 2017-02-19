@@ -27,6 +27,7 @@ app.locals.username = "";
 app.locals.pageErrorMessage = "";
 
 app.use(logger("dev"));
+app.use(express.static("src/images"));
 app.use(bodyParser.urlencoded({
     extended: false
 }));

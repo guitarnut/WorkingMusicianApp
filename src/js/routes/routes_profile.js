@@ -3,6 +3,8 @@
  */
 
 let express = require('express');
+let fileUpload = require('express-fileupload');
+let path = require("path");
 let api = express.Router();
 
 let profileDB = require('../data/queries/profile');
@@ -12,9 +14,9 @@ function populateFormData(applicationData) {
     return new Promise((resolve) => {
         if (!applicationData.hasOwnProperty("formData")) {
             formDB.getData().then((data) => {
-                applicationData.formData = data;
-                resolve();
-            })
+                    applicationData.formData = data;
+                    resolve();
+                })
                 .catch((ex) => {
                     resolve();
                 });
@@ -24,14 +26,16 @@ function populateFormData(applicationData) {
     });
 }
 
+api.use(fileUpload());
+
 // check auth
-api.use((req, res, next)=> {
-   if(!req.app.locals.authenticated) {
-       res.redirect("/login?redirect="+req.originalUrl);
-   } else {
-       next();
-   }
-});
+//api.use((req, res, next)=> {
+//    if (!req.app.locals.authenticated) {
+//        res.redirect("/login?redirect=" + req.originalUrl);
+//    } else {
+//        next();
+//    }
+//});
 
 api.get("/create", (req, res) => {
     populateFormData(req.app.locals.application)
@@ -41,7 +45,6 @@ api.get("/create", (req, res) => {
 });
 
 api.post("/create", (req, res) => {
-    console.log(req.body);
     profileDB.createProfile(req.body)
         .then((data) => {
             res.redirect("/profile/view/" + data);
@@ -50,6 +53,22 @@ api.post("/create", (req, res) => {
             req.app.locals.serverError = ex.toString();
             res.redirect('/error');
         })
+});
+
+api.get("/image", (req, res) => {
+    res.render('profile/profile_image');
+});
+
+api.post("/image", (req, res) => {
+    console.log(__dirname);
+    req.files.profileImage.mv('../../uploads/temp.jpg', (err)=> {
+        if (err) {
+            req.app.locals.serverError = err.toString();
+            res.redirect('/error');
+            return;
+        }
+        res.redirect('/image');
+    });
 });
 
 api.get("/view/:profile_id", (req, res) => {

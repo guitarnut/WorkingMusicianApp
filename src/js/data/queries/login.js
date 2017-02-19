@@ -13,7 +13,7 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
             try {
-                connection.query('SELECT * FROM users WHERE username="' + data.username + '" and password="' + data.password + '"', (err, rows, fields) => {
+                connection.query('SELECT * FROM users WHERE username="' + data.username_existing + '" and password="' + data.password_existing + '"', (err, rows, fields) => {
                     if (err) {
                         reject(err);
                         return;
@@ -29,7 +29,7 @@ module.exports = {
                         return;
                     }
 
-                    resolve(data.username);
+                    resolve(data.username_existing);
                 });
             } catch (ex) {
                 reject(ex);
@@ -46,27 +46,34 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
             try {
-                connection.query('SELECT * FROM users WHERE username="' + data.username + '"', (err, rows) => {
+                connection.query('SELECT * FROM users WHERE username="' + data.username_new + '"', (err, rows) => {
                     if (err) {
                         reject(err);
                         return;
                     }
                     if (rows.length >= 1) {
                         reject("This username has already been taken.");
-                    } else {
-                        connection.query('INSERT INTO users SET ?', data, (err, result) => {
-                            if (err) {
-                                reject(err);
-                                return;
-                            }
-                            resolve(data.username);
-                        })
+                        return;
+                    }
+                });
+
+                let newUser = {
+                    username: data.username_new,
+                    password: data.password_new
+                };
+
+                connection.query('INSERT INTO users SET ?', newUser, (err, result) => {
+                    if (err) {
+                        reject(err);
+                        return;
                     }
                 })
             } catch (ex) {
                 reject(ex);
             } finally {
-                connection.end();
+                connection.end(()=> {
+                    resolve(data.username_new);
+                });
             }
         });
     }

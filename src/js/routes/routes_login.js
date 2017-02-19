@@ -13,7 +13,6 @@ api.get("/", (req, res) => {
 
 api.post("/", (req, res) => {
     req.app.locals.pageErrorMessage = "";
-
     if (req.body.newUser) {
         userDB.createNewUser(req.body)
             .then((username) => {
@@ -32,7 +31,8 @@ api.post("/", (req, res) => {
                     req.app.locals.pageErrorMessage = ex;
                     res.redirect("/login");
                 } else {
-                    res.redirect("/");
+                    req.app.locals.serverError = ex;
+                    res.redirect("/error");
                 }
             });
     } else {
@@ -49,7 +49,6 @@ api.post("/", (req, res) => {
                 }
             })
             .catch((ex) => {
-            console.log(ex);
                 if (ex === "Invalid credentials.") {
                     req.app.locals.pageErrorMessage = ex;
                     res.redirect("/login");
