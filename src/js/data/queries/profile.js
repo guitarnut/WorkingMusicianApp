@@ -117,5 +117,9 @@ module.exports = {
                 connection.end();
             }
         });
+    },
+
+    saveProfileImagePath: (path) => {
+
     }
 };
