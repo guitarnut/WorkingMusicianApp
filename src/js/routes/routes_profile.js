@@ -14,9 +14,9 @@ function populateFormData(applicationData) {
     return new Promise((resolve) => {
         if (!applicationData.hasOwnProperty("formData")) {
             formDB.getData().then((data) => {
-                    applicationData.formData = data;
-                    resolve();
-                })
+                applicationData.formData = data;
+                resolve();
+            })
                 .catch((ex) => {
                     resolve();
                 });
@@ -61,7 +61,7 @@ api.get("/image", (req, res) => {
 
 api.post("/image", (req, res) => {
     console.log(__dirname);
-    req.files.profileImage.mv('../../uploads/temp.jpg', (err)=> {
+    req.files.profileImage.mv(path.join(__dirname, '../../', 'uploads/' + req.app.locals.profile.id + '_profile_image_default.jpg'), (err) => {
         if (err) {
             req.app.locals.serverError = err.toString();
             res.redirect('/error');

@@ -39,7 +39,7 @@ module.exports = {
         });
     },
 
-    createNewUser: (data) => {
+    checkForExistingUser: (data) => {
         let connection = database.getConnection();
 
         connection.connect();
@@ -49,14 +49,27 @@ module.exports = {
                 connection.query('SELECT * FROM users WHERE username="' + data.username_new + '"', (err, rows) => {
                     if (err) {
                         reject(err);
-                        return;
-                    }
-                    if (rows.length >= 1) {
+                    } else if (rows.length >= 1) {
                         reject("This username has already been taken.");
-                        return;
+                    } else {
+                        resolve();
                     }
                 });
+            } catch (ex) {
+                reject(ex);
+            } finally {
+                connection.end();
+            }
+        });
+    },
 
+    createNewUser: (data) => {
+        let connection = database.getConnection();
+
+        connection.connect();
+
+        return new Promise((resolve, reject) => {
+            try {
                 let newUser = {
                     username: data.username_new,
                     password: data.password_new
@@ -65,15 +78,14 @@ module.exports = {
                 connection.query('INSERT INTO users SET ?', newUser, (err, result) => {
                     if (err) {
                         reject(err);
-                        return;
+                    } else {
+                        resolve(newUser.username);
                     }
                 })
             } catch (ex) {
                 reject(ex);
             } finally {
-                connection.end(()=> {
-                    resolve(data.username_new);
-                });
+                connection.end();
             }
         });
     }
