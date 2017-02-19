@@ -9,6 +9,7 @@ let api = express.Router();
 
 let profileDB = require('../data/queries/profile');
 let formDB = require('../data/queries/form_data');
+let image = require('../image/image_editor');
 
 function populateFormData(applicationData) {
     return new Promise((resolve) => {
@@ -60,14 +61,22 @@ api.get("/image", (req, res) => {
 });
 
 api.post("/image", (req, res) => {
-    console.log(__dirname);
-    req.files.profileImage.mv(path.join(__dirname, '../../', 'uploads/' + req.app.locals.profile.id + '_profile_image_default.jpg'), (err) => {
+    let imagePath = path.join(__dirname, '../../', 'uploads/' + req.app.locals.profile.id + '_profile_image_default.jpg');
+
+    req.files.profileImage.mv(imagePath, (err) => {
         if (err) {
             req.app.locals.serverError = err.toString();
             res.redirect('/error');
-            return;
+        } else {
+            image.createProfileImage(imagePath)
+                .then(() => {
+                    res.redirect('/image');
+                })
+                .catch((err) => {
+                    req.app.locals.serverError = err.toString();
+                    res.redirect('/error');
+                })
         }
-        res.redirect('/image');
     });
 });
 
