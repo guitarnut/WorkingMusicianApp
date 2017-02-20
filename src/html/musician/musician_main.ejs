@@ -1,13 +1,15 @@
 <% include ../static/header %>
 <div class="row">
     <div class="large-12 columns">
-        <h3><%= musician.first_name %> <%= musician.last_name %>, <%= musician.profession %> (<%= musician.profile_views %>)</h3>
+        <p><a href="/search/results">Go back to search results</a></p>
+        <h3><%= musician.first_name %> <%= musician.last_name %>, <%= musician.profession %></h3>
         <h4><%= musician.city %>, <%= musician.state %></h4>
+        <p>Profile Views: <span class="badge"><%= musician.profile_views %></span></p>
 
         <% if(musician.availability) { %>
-        <p><strong>Availability:</strong></p>
+        <p><strong>Availability:</strong>
         <% musician.availability.forEach(function(val) { %>
-        <p><%= val %></p>
+        <br><%= val %></p>
         <% }) %>
         <% } %>
 
@@ -15,23 +17,23 @@
         <p><%= musician.travel %></p>
 
         <% if(musician.vocals) { %>
-        <p><strong>Travel:</strong></p>
+        <p><strong>Vocals:</strong>
         <% musician.vocals.forEach(function(val) { %>
-        <p><%= val %></p>
+        <br><%= val %></p>
         <% }) %>
         <% } %>
 
         <% if(musician.instruments) { %>
-        <p><strong>Instruments:</strong></p>
+        <p><strong>Instruments:</strong>
         <% musician.instruments.forEach(function(val) { %>
-        <p><%= val %></p>
+        <br><%= val.trim() %></p>
         <% }) %>
         <% } %>
 
         <% if(musician.genres && musician.genres.length > 0) { %>
-        <p><strong>Genres:</strong></p>
+        <p><strong>Genres:</strong>
         <% musician.genres.forEach(function(val) { %>
-        <p><%= val %></p>
+        <br><%= val %></p>
         <% }) %>
         <% } %>
 
