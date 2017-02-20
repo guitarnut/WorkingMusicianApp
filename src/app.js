@@ -3,6 +3,8 @@
  */
 
 // TODO: Encript URL ID values
+    // TODO: Join dates
+    // TODO: Gather search stats
 
 let express = require("express");
 let session = require('express-session');
@@ -56,11 +58,11 @@ app.use("/profile", userRouter);
 app.use("/musician", musicianRouter);
 
 // error handling
-app.get("/error", (req, res)=> {
+app.get("/error", (req, res) => {
     res.render("static/500");
 });
 
-app.use((req, res)=> {
+app.use((req, res) => {
     res.status(404).render("static/404");
 });
 
@@ -69,9 +71,9 @@ function populateFormData(applicationData) {
     return new Promise((resolve) => {
         if (!applicationData.hasOwnProperty("formData")) {
             formDB.getData().then((data) => {
-                    applicationData.formData = data;
-                    resolve();
-                })
+                applicationData.formData = data;
+                resolve();
+            })
                 .catch((ex) => {
                     resolve();
                 });
@@ -84,13 +86,13 @@ function populateFormData(applicationData) {
 // convert to promise.all() chain for all startup data, tasks, etc
 function startup() {
     populateFormData(app.locals.application)
-        .then(()=> {
+        .then(() => {
             // startup
-            app.listen(3000, ()=> {
+            app.listen(3000, () => {
                 console.log("App started");
             });
         })
-        .catch((ex)=> {
+        .catch((ex) => {
             console.log(ex);
             // shutdown
         })

@@ -1,44 +1,59 @@
 <% include ../static/header %>
-<div class="row">
-    <div class="large-12 columns">
-        <h3><%= profile.first_name %> <%= profile.last_name %>, <%= profile.profession %> (<%= profile.profile_views %>)</h3>
+<div class="container">
+    <div class="col-md-8">
+        <h3><%= profile.first_name %> <%= profile.last_name %>, <%= profile.profession %></h3>
         <h4><%= profile.city %>, <%= profile.state %></h4>
-
-        <% if(profile.availability) { %>
-        <p><strong>Availability:</strong></p>
-        <% profile.availability.forEach(function(val) { %>
-        <p><%= val %></p>
-        <% }) %>
-        <% } %>
-
-        <p><strong>Travel:</strong></p>
-        <p><%= profile.travel %></p>
-
-        <% if(profile.vocals) { %>
-        <p><strong>Vocals:</strong></p>
-        <% profile.vocals.forEach(function(val) { %>
-        <p><%= val %></p>
-        <% }) %>
-        <% } %>
-
-        <% if(profile.instruments) { %>
-        <p><strong>Instruments:</strong></p>
-        <% profile.instruments.forEach(function(val) { %>
-        <p><%= val %></p>
-        <% }) %>
-        <% } %>
-
+    </div>
+    <div class="col-md-4">
+        <h3>Stats</h3>
+        <p>Profile Views: <%= profile.profile_views %></p>
+    </div>
+</div>
+<div class="container">
+    <div class="col-md-12">
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    </div>
+    <div class="col-md-4">
         <% if(profile.genres && profile.genres.length > 0) { %>
-        <p><strong>Genres:</strong></p>
+        <h4>Genres</h4>
         <% profile.genres.forEach(function(val) { %>
         <p><%= val %></p>
         <% }) %>
         <% } %>
-
     </div>
-    <div class="large-12 columns">
-        <a href="/profile/update/<%= profile.id %>" class="button">Update</a> <a
-                href="/profile/delete/<%= profile.id %>" class="alert button">Delete</a>
+    <div class="col-md-4">
+        <% if(profile.instruments) { %>
+        <h4>Instruments</h4>
+        <% profile.instruments.forEach(function(val) { %>
+        <p><%= val %></p>
+        <% }) %>
+        <% } %>
+    </div>
+    <div class="col-md-4">
+        <% if(profile.vocals) { %>
+        <h4>Vocals</h4>
+        <% profile.vocals.forEach(function(val) { %>
+        <p><%= val %></p>
+        <% }) %>
+        <% } %>
+    </div>
+    <div class="col-md-4">
+        <% if(profile.availability) { %>
+        <h4>Availability</h4>
+        <% profile.availability.forEach(function(val) { %>
+        <p><%= val %></p>
+        <% }) %>
+        <% } %>
+    </div>
+    <div class="col-md-4">
+        <h4>Travel</h4>
+        <p><%= profile.travel %></p>
+    </div>
+    <div class="col-md-12">
+        <h4>Lorem</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a href="/profile/update/<%= profile.id %>" class="btn btn-default">Update</a> <a
+                href="/profile/delete/<%= profile.id %>" class="btn btn-danger">Delete</a>
     </div>
 </div>
 <% include ../static/script %>

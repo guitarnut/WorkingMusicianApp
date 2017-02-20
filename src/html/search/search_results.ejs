@@ -1,16 +1,18 @@
 <% include ../static/header %>
-<div class="row">
-    <div class="large-12 columns">
+<div class="container">
+    <div class="col-md-12">
         <h3>Search Results</h3>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat nulla pariatur.</p>
     </div>
     <% if(searchResults.length > 0) { %>
     <% searchResults.forEach(function(val) { %>
-    <div class="large-4 columns">
-        <div class="callout">
-        <h5><%= val.first_name %> <%= val.last_name %></h5>
-            <p><%= val.first_name %> is a <%= val.profession.toLowerCase() %> currently working in <%= val.city %>, available <%= val.availability.toLowerCase() %> and willing to travel <%= val.travel.toLowerCase() %>.<br>
-                [<a href="/musician/view/<%= val.id %>">VIEW</a>]</p>
-        </div>
+    <div class="col-md-4">
+        <h4><a href="/musician/view/<%= val.id %>"><button type="button" class="btn btn-primary btn-xs">View</button></a> <%= val.first_name %> <%= val.last_name %></h4>
+        <p><%= val.first_name %> is a <%= val.profession.toLowerCase() %> currently working in <%= val.city %>.<br>
+            <em>This profile has been viewed <%= val.profile_views %> times.</em>
     </div>
     <% }); %>
     <% } %>

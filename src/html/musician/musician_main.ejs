@@ -1,42 +1,49 @@
 <% include ../static/header %>
-<div class="row">
-    <div class="large-12 columns">
+<div class="container">
+    <div class="col-md-12">
         <p><a href="/search/results">Go back to search results</a></p>
-        <h3><%= musician.first_name %> <%= musician.last_name %>, <%= musician.profession %></h3>
+        <h3><%= musician.first_name %> <%= musician.last_name %>, <%= musician.profession %> <span class="badge">Views <%= musician.profile_views %></span></h3>
         <h4><%= musician.city %>, <%= musician.state %></h4>
-        <p>Profile Views: <span class="badge"><%= musician.profile_views %></span></p>
-
+        <p></p>
+    </div>
+    <div class="col-md-4">
         <% if(musician.availability) { %>
-        <p><strong>Availability:</strong>
-        <% musician.availability.forEach(function(val) { %>
-        <br><%= val %></p>
-        <% }) %>
+        <h4>Availability</h4>
+        <p><% musician.availability.forEach(function(val) { %>
+            <%= val %><br>
+        <% }) %></p>
         <% } %>
-
-        <p><strong>Travel:</strong></p>
+    </div>
+    <div class="col-md-4">
+        <h4>Travel</h4>
         <p><%= musician.travel %></p>
+    </div>
 
+    <div class="col-md-4">
         <% if(musician.vocals) { %>
-        <p><strong>Vocals:</strong>
-        <% musician.vocals.forEach(function(val) { %>
-        <br><%= val %></p>
-        <% }) %>
-        <% } %>
+        <h4>Vocals</h4>
+        <p><% musician.vocals.forEach(function(val) { %>
+            <%= val %><br>
+            <% }) %></p>
+            <% } %>
+    </div>
 
+    <div class="col-md-4">
         <% if(musician.instruments) { %>
-        <p><strong>Instruments:</strong>
-        <% musician.instruments.forEach(function(val) { %>
-        <br><%= val.trim() %></p>
-        <% }) %>
+        <h4>Instruments</h4>
+        <p><% musician.instruments.forEach(function(val) { %>
+            <%= val %><br>
+        <% }) %></p>
         <% } %>
+    </div>
 
+    <div class="col-md-4">
         <% if(musician.genres && musician.genres.length > 0) { %>
-        <p><strong>Genres:</strong>
-        <% musician.genres.forEach(function(val) { %>
-        <br><%= val %></p>
-        <% }) %>
+        <h4>Genres</h4>
+        <p><% musician.genres.forEach(function(val) { %>
+            <%= val %><br>
+        <% }) %></p>
         <% } %>
-
     </div>
 </div>
 <% include ../static/script %>

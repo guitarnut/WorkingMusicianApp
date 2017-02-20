@@ -1,94 +1,109 @@
 <% include ../static/header %>
-<div class="row">
-    <div class="large-12 columns">
+<div class="container">
+    <div class="col-md-12">
         <h3>Search Musicians</h3>
         <% if(pageErrorMessage) { %>
-        <p><%= pageErrorMessage %></p>
+        <p class="bg-primary"><%= pageErrorMessage %></p>
         <% } %>
-        <form method="post" role="form">
-            <div class="row">
-                <% if(application.formData.availability) { %>
-                <div class="large-4 columns">
-                    <label>Availability
-                        <select name="availability">
-                            <% application.formData.availability.forEach(function(val) { %>
-                            <option value="<%= val %>"><%= val %></option>
-                            <% }) %>
-                        </select>
-                    </label>
-                </div>
-                <% } %>
-                <div class="large-4 columns">
-                    <label>City
-                        <input type="text" placeholder="Last name" name="city">
-                    </label>
-                </div>
-                <% if(application.formData.profession) { %>
-                <div class="large-4 columns">
-                    <label>Profession
-                        <select name="profession">
-                            <% application.formData.profession.forEach(function(val) { %>
-                            <option value="<%= val %>"><%= val %></option>
-                            <% }) %>
-                        </select>
-                    </label>
-                </div>
-                <% } %>
-                <div class="large-4 columns">
-                    <label>State
-                        <input type="text" placeholder="State" name="state">
-                    </label>
-                </div>
-                <% if(application.formData.travel) { %>
-                <div class="large-4 columns">
-                    <label>Travel
-                        <select name="travel">
-                            <% application.formData.travel.forEach(function(val) { %>
-                            <option value="<%= val %>"><%= val %></option>
-                            <% }) %>
-                        </select>
-                    </label>
-                </div>
-                <% } %>
-                <% if(application.formData.genres) { %>
-                <div class="large-4 columns">
-                    <label>Genres
-                        <select name="genres">
-                            <% application.formData.genres.forEach(function(val) { %>
-                            <option value="<%= val %>"><%= val %></option>
-                            <% }) %>
-                        </select>
-                    </label>
-                </div>
-                <% } %>
-                <% if(application.formData.vocals) { %>
-                <div class="large-4 columns">
-                    <label>Vocals
-                        <select name="vocals">
-                            <% application.formData.vocals.forEach(function(val) { %>
-                            <option value="<%= val %>"><%= val %></option>
-                            <% }) %>
-                        </select>
-                    </label>
-                </div>
-                <% } %>
-                <% if(application.formData.instruments) { %>
-                <div class="large-4 columns">
-                    <label>Instruments
-                        <select name="instruments">
-                            <% application.formData.instruments.forEach(function(val) { %>
-                            <option value="<%= val %>"><%= val %></option>
-                            <% }) %>
-                        </select>
-                    </label>
-                </div>
-                <% } %>
-                <div class="large-12 columns">
-                    <input type="submit" class="button" value="Search Profiles">
-                </div>
-            </div>
-        </form>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
     </div>
+    <form method="post" role="form">
+        <% if(application.formData.availability) { %>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="availability">Availability</label>
+                <select name="availability" class="form-control">
+                    <% application.formData.availability.forEach(function(val) { %>
+                    <option value="<%= val %>"><%= val %></option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+        <% } %>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" placeholder="City" name="city" class="form-control">
+            </div>
+        </div>
+
+        <% if(application.formData.profession) { %>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="profession">Profession</label>
+                <select name="profession" class="form-control">
+                    <% application.formData.profession.forEach(function(val) { %>
+                    <option value="<%= val %>"><%= val %></option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+        <% } %>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="state">State</label>
+                <input type="text" placeholder="State" name="state" class="form-control">
+            </div>
+        </div>
+
+        <% if(application.formData.travel) { %>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="travel">Travel</label>
+                <select name="travel" class="form-control">
+                    <% application.formData.travel.forEach(function(val) { %>
+                    <option value="<%= val %>"><%= val %></option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+        <% } %>
+
+        <% if(application.formData.genres) { %>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="genres">Genres</label>
+                <select name="genres" class="form-control">
+                    <% application.formData.genres.forEach(function(val) { %>
+                    <option value="<%= val %>"><%= val %></option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+        <% } %>
+
+        <% if(application.formData.vocals) { %>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="vocals">Vocals</label>
+                <select name="vocals" class="form-control">
+                    <% application.formData.vocals.forEach(function(val) { %>
+                    <option value="<%= val %>"><%= val %></option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+        <% } %>
+
+        <% if(application.formData.instruments) { %>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="instruments">Instruments</label>
+                <select name="instruments" class="form-control">
+                    <% application.formData.instruments.forEach(function(val) { %>
+                    <option value="<%= val %>"><%= val %></option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+        <% } %>
+
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-default" value="Search Profiles">
+        </div>
+    </form>
 </div>
 <% include ../static/script %>
 <% include ../static/footer %>
