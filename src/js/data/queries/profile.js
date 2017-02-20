@@ -15,14 +15,47 @@ function stringifyArrayData(data) {
 
 module.exports = {
 
-    getProfile: (id) => {
+    getProfileByUserId: (userId) => {
         let connection = database.getConnection();
 
         connection.connect();
 
         return new Promise((resolve, reject) => {
             try {
-                connection.query('SELECT * FROM profiles WHERE id=' + id, (err, rows, fields) => {
+                connection.query('SELECT id FROM profiles WHERE user_id=' + userId, (err, rows, fields) => {
+                    if (err) {
+                        reject(err);
+                        return;
+                    }
+
+                    if (rows.length === 0) {
+                        reject(new Error('Profile does not exist'));
+                        return;
+                    }
+
+                    if (rows.length > 1) {
+                        reject(new Error('Multiple profiles for that ID exist'));
+                        return;
+                    }
+
+                    resolve(rows[0].id);
+                });
+            } catch (ex) {
+                reject(ex);
+            } finally {
+                connection.end();
+            }
+        });
+    },
+
+    getProfile: (id, userId) => {
+        let connection = database.getConnection();
+
+        connection.connect();
+
+        return new Promise((resolve, reject) => {
+            try {
+                connection.query('SELECT * FROM profiles WHERE id=' + id + ' AND user_id=' + userId, (err, rows, fields) => {
                     if (err) {
                         reject(err);
                         return;
@@ -48,11 +81,14 @@ module.exports = {
         });
     },
 
-    createProfile: (data) => {
+    createProfile: (data, userId) => {
         let connection = database.getConnection();
 
         connection.connect();
+
         data.profile_views = 0;
+        data.user_id = userId;
+
         stringifyArrayData(data);
 
         return new Promise((resolve, reject) => {

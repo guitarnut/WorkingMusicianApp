@@ -29,7 +29,7 @@ module.exports = {
                         return;
                     }
 
-                    resolve(data.username_existing);
+                    resolve({username: data.username_existing, userId: rows[0].id});
                 });
             } catch (ex) {
                 reject(ex);
@@ -79,7 +79,7 @@ module.exports = {
                     if (err) {
                         reject(err);
                     } else {
-                        resolve(newUser.username);
+                        resolve({username: newUser.username, userId: result.insertId});
                     }
                 })
             } catch (ex) {

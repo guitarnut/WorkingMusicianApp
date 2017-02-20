@@ -1,0 +1,13 @@
+<% include ../static/header %>
+<div class="row">
+    <div class="large-12 columns">
+        <h3>Search Results</h3>
+        <% if(searchResults.length > 0) { %>
+        <% searchResults.forEach(function(val) { %>
+            <p><%= val.first_name %> [<a href="/musician/view/<%= val.id %>">VIEW</a>]</p>
+        <% }); %>
+        <% } %>
+    </div>
+</div>
+<% include ../static/script %>
+<% include ../static/footer %>

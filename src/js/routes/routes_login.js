@@ -7,7 +7,8 @@ let session = require('express-session');
 let api = express.Router();
 let userDB = require('../data/queries/login');
 
-function loginSuccess(username, req, res) {
+function loginSuccess(username, req, res, userId) {
+    req.app.locals.userId = userId;
     req.session.username = username;
     req.app.locals.authenticated = true;
     req.app.locals.username = username;
@@ -29,6 +30,18 @@ function serverError(msg, req, res) {
     res.redirect("/error");
 }
 
+function clearApplicationUserData(req) {
+    req.app.locals.serverError = "";
+    req.app.locals.application = {};
+    req.app.locals.profile = {};
+    req.app.locals.musician = {};
+    req.app.locals.searchResults = [];
+    req.app.locals.authenticated = false;
+    req.app.locals.username = "";
+    req.app.locals.userId = null;
+    req.app.locals.pageErrorMessage = "";
+}
+
 api.get("/", (req, res) => {
     res.render("login/login_main");
 });
@@ -40,8 +53,8 @@ api.post("/", (req, res) => {
         userDB.checkForExistingUser(req.body)
             .then(() => {
                 userDB.createNewUser(req.body)
-                    .then((username) => {
-                        loginSuccess(username, req, res);
+                    .then((data) => {
+                        loginSuccess(data.username, req, res, data.userId);
                     })
                     .catch((ex) => {
                         if (ex === "This username has already been taken.") {
@@ -63,8 +76,8 @@ api.post("/", (req, res) => {
     }
 
     userDB.loginExistingUser(req.body)
-        .then((username) => {
-            loginSuccess(username, req, res);
+        .then((data) => {
+            loginSuccess(data.username, req, res, data.userId);
         })
         .catch((ex) => {
             if (ex === "Invalid credentials.") {
@@ -76,9 +89,7 @@ api.post("/", (req, res) => {
 });
 
 api.get("/end", (req, res) => {
-    req.session.username = "";
-    req.app.locals.authenticated = false;
-
+    clearApplicationUserData(req);
     res.redirect("/");
 });
 

@@ -1,0 +1,41 @@
+<% include ../static/header %>
+<div class="row">
+    <div class="large-12 columns">
+        <h3><%= musician.first_name %> <%= musician.last_name %>, <%= musician.profession %> (<%= musician.profile_views %>)</h3>
+        <h4><%= musician.city %>, <%= musician.state %></h4>
+
+        <% if(musician.availability) { %>
+        <p><strong>Availability:</strong></p>
+        <% musician.availability.forEach(function(val) { %>
+        <p><%= val %></p>
+        <% }) %>
+        <% } %>
+
+        <p><strong>Travel:</strong></p>
+        <p><%= musician.travel %></p>
+
+        <% if(musician.vocals) { %>
+        <p><strong>Travel:</strong></p>
+        <% musician.vocals.forEach(function(val) { %>
+        <p><%= val %></p>
+        <% }) %>
+        <% } %>
+
+        <% if(musician.instruments) { %>
+        <p><strong>Instruments:</strong></p>
+        <% musician.instruments.forEach(function(val) { %>
+        <p><%= val %></p>
+        <% }) %>
+        <% } %>
+
+        <% if(musician.genres && musician.genres.length > 0) { %>
+        <p><strong>Genres:</strong></p>
+        <% musician.genres.forEach(function(val) { %>
+        <p><%= val %></p>
+        <% }) %>
+        <% } %>
+
+    </div>
+</div>
+<% include ../static/script %>
+<% include ../static/footer %>

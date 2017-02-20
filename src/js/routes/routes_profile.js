@@ -8,45 +8,25 @@ let path = require("path");
 let api = express.Router();
 
 let profileDB = require('../data/queries/profile');
-let formDB = require('../data/queries/form_data');
 let image = require('../image/image_editor');
-
-function populateFormData(applicationData) {
-    return new Promise((resolve) => {
-        if (!applicationData.hasOwnProperty("formData")) {
-            formDB.getData().then((data) => {
-                applicationData.formData = data;
-                resolve();
-            })
-                .catch((ex) => {
-                    resolve();
-                });
-        } else {
-            resolve();
-        }
-    });
-}
 
 api.use(fileUpload());
 
 // check auth
-//api.use((req, res, next)=> {
-//    if (!req.app.locals.authenticated) {
-//        res.redirect("/login?redirect=" + req.originalUrl);
-//    } else {
-//        next();
-//    }
-//});
+api.use((req, res, next)=> {
+    if (!req.app.locals.authenticated) {
+        res.redirect("/login?redirect=" + req.originalUrl);
+    } else {
+        next();
+    }
+});
 
 api.get("/create", (req, res) => {
-    populateFormData(req.app.locals.application)
-        .then(() => {
-            res.render('profile/profile_create');
-        });
+    res.render('profile/profile_create');
 });
 
 api.post("/create", (req, res) => {
-    profileDB.createProfile(req.body)
+    profileDB.createProfile(req.body, req.app.locals.userId)
         .then((data) => {
             res.redirect("/profile/view/" + data);
         })
@@ -81,7 +61,7 @@ api.post("/image", (req, res) => {
 });
 
 api.get("/view/:profile_id", (req, res) => {
-    profileDB.getProfile(req.params.profile_id)
+    profileDB.getProfile(req.params.profile_id, req.app.locals.userId)
         .then((data) => {
             req.app.locals.profile = data;
             res.render('profile/profile_main');
@@ -92,10 +72,18 @@ api.get("/view/:profile_id", (req, res) => {
         });
 });
 
-api.get("/update/:profile_id", (req, res) => {
-    populateFormData(req.app.locals.application);
+api.get("/view", (req, res) => {
+    profileDB.getProfileByUserId(req.app.locals.userId)
+        .then((data) => {
+            res.redirect("/profile/view/" + data);
+        })
+        .catch((ex) => {
+            res.redirect('/profile/create');
+        });
+});
 
-    profileDB.getProfile(req.params.profile_id)
+api.get("/update/:profile_id", (req, res) => {
+    profileDB.getProfile(req.params.profile_id, req.app.locals.userId)
         .then((data) => {
             req.app.locals.profile = data;
             res.render('profile/profile_update');
