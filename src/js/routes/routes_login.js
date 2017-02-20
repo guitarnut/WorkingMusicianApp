@@ -32,7 +32,6 @@ function serverError(msg, req, res) {
 
 function clearApplicationUserData(req) {
     req.app.locals.serverError = "";
-    req.app.locals.application = {};
     req.app.locals.profile = {};
     req.app.locals.musician = {};
     req.app.locals.searchResults = [];

@@ -22,7 +22,7 @@ module.exports = {
             };
 
             try {
-                connection.query('SELECT * FROM form_options_instruments', (err, rows, fields) => {
+                connection.query('SELECT * FROM form_options_instruments ORDER BY value ASC', (err, rows, fields) => {
                     if (err) {
                         // ignore
                     } else {
@@ -31,7 +31,7 @@ module.exports = {
                         })
                     }
                 });
-                connection.query('SELECT * FROM form_options_genres', (err, rows, fields) => {
+                connection.query('SELECT * FROM form_options_genres ORDER BY value ASC', (err, rows, fields) => {
                     if (err) {
                         // ignore
                     } else {
@@ -40,7 +40,7 @@ module.exports = {
                         })
                     }
                 });
-                connection.query('SELECT * FROM form_options_travel', (err, rows, fields) => {
+                connection.query('SELECT * FROM form_options_travel ORDER BY value ASC', (err, rows, fields) => {
                     if (err) {
                         // ignore
                     } else {
@@ -49,7 +49,7 @@ module.exports = {
                         })
                     }
                 });
-                connection.query('SELECT * FROM form_options_availability', (err, rows, fields) => {
+                connection.query('SELECT * FROM form_options_availability ORDER BY value ASC', (err, rows, fields) => {
                     if (err) {
                         // ignore
                     } else {
@@ -58,7 +58,7 @@ module.exports = {
                         })
                     }
                 });
-                connection.query('SELECT * FROM form_options_vocals', (err, rows, fields) => {
+                connection.query('SELECT * FROM form_options_vocals ORDER BY value ASC', (err, rows, fields) => {
                     if (err) {
                         // ignore
                     } else {
@@ -67,7 +67,7 @@ module.exports = {
                         })
                     }
                 });
-                connection.query('SELECT * FROM form_options_profession', (err, rows, fields) => {
+                connection.query('SELECT * FROM form_options_profession ORDER BY value ASC', (err, rows, fields) => {
                     if (err) {
                         // ignore
                     } else {

@@ -7,124 +7,122 @@
 <form method="post" role="form">
     <div class="container">
         <div class="col-md-6">
-            <label>First Name</label>
-                <input type="text" value="<%= profile.first_name %>" name="first_name">
-            
+            <div class="form-group">
+                <label for="">First Name</label>
+                <input type="text" value="<%= profile.first_name %>" name="first_name" class="form-control">
+            </div>
         </div>
         <div class="col-md-6">
-            <label>Last Name</label>
-                <input type="text" value="<%= profile.last_name %>" name="last_name">
-            
+            <div class="form-group">
+                <label for="">Last Name</label>
+                <input type="text" value="<%= profile.last_name %>" name="last_name" class="form-control">
+            </div>
         </div>
         <div class="col-md-4">
-            <label>City</label>
-                <input type="text" value="<%= profile.city %>" name="city">
-            
+            <div class="form-group">
+                <label for="">City</label>
+                <input type="text" value="<%= profile.city %>" name="city" class="form-control">
+            </div>
         </div>
         <div class="col-md-4">
-            <label>State</label>
-                <input type="text" value="<%= profile.state %>" name="state">
-            
+            <div class="form-group">
+                <label for="">State</label>
+                <input type="text" value="<%= profile.state %>" name="state" class="form-control">
+            </div>
         </div>
     </div>
     <div class="container">
         <div class="col-md-12">
-            <label>Availability</label>
-                <select name="availability" multiple>
-                    <% if(application.formData.availability) { %>
-                    <% application.formData.availability.forEach(function(val) { %>
-                    <% if(profile.availability && profile.availability === val) { %>
-                    <option value="<%= val %>" selected><%= val %></option>
-                    <% } else { %>
-                    <option value="<%= val %>"><%= val %></option>
-                    <% } %>
-                    <% }) %>
-                    <% } %>
-                </select>
-            
+            <label for="availability">Availability</label>
+            <select name="availability" multiple class="form-control">
+                <% if(application.formData.availability) { %>
+                <% application.formData.availability.forEach(function(val) { %>
+                <% if(profile.availability && profile.availability === val) { %>
+                <option value="<%= val %>" selected><%= val %></option>
+                <% } else { %>
+                <option value="<%= val %>"><%= val %></option>
+                <% } %>
+                <% }) %>
+                <% } %>
+            </select>
         </div>
         <div class="col-md-12">
-            <label>Profession</label>
-                <select name="profession">
-                    <% if(application.formData.profession) { %>
-                    <% application.formData.profession.forEach(function(val) { %>
-                    <% if(profile.profession && profile.profession.indexOf(val) > -1) { %>
-                    <option value="<%= val %>" selected><%= val %></option>
-                    <% } else { %>
-                    <option value="<%= val %>"><%= val %></option>
-                    <% } %>
-                    <% }) %>
-                    <% } %>
-                </select>
-            
+            <label for="profession">Profession</label>
+            <select name="profession" class="form-control">
+                <% if(application.formData.profession) { %>
+                <% application.formData.profession.forEach(function(val) { %>
+                <% if(profile.profession && profile.profession.indexOf(val) > -1) { %>
+                <option value="<%= val %>" selected><%= val %></option>
+                <% } else { %>
+                <option value="<%= val %>"><%= val %></option>
+                <% } %>
+                <% }) %>
+                <% } %>
+            </select>
         </div>
         <div class="col-md-12">
-            <label>Travel</label>
-                <select name="travel">
-                    <% if(application.formData.travel) { %>
-                    <% application.formData.travel.forEach(function(val) { %>
-                    <% if(profile.travel && profile.travel.indexOf(val) > -1) { %>
-                    <option value="<%= val %>" selected><%= val %></option>
-                    <% } else { %>
-                    <option value="<%= val %>"><%= val %></option>
-                    <% } %>
-                    <% }) %>
-                    <% } %>
-                </select>
-            
+            <label for="travel">Travel</label>
+            <select name="travel" class="form-control">
+                <% if(application.formData.travel) { %>
+                <% application.formData.travel.forEach(function(val) { %>
+                <% if(profile.travel && profile.travel.indexOf(val) > -1) { %>
+                <option value="<%= val %>" selected><%= val %></option>
+                <% } else { %>
+                <option value="<%= val %>"><%= val %></option>
+                <% } %>
+                <% }) %>
+                <% } %>
+            </select>
         </div>
     </div>
     <div class="container">
         <div class="col-md-12">
-            <label>Genres</label>
-                <select name="genres" multiple>
-                    <% if(application.formData.genres) { %>
-                    <% application.formData.genres.forEach(function(val) { %>
-                    <% if(profile.genres && profile.genres.indexOf(val) > -1) { %>
-                    <option value="<%= val %>" selected><%= val %></option>
-                    <% } else { %>
-                    <option value="<%= val %>"><%= val %></option>
-                    <% } %>
-                    <% }) %>
-                    <% } %>
-                </select>
-            
+            <label for="genres">Genres</label>
+            <select name="genres" multiple class="form-control">
+                <% if(application.formData.genres) { %>
+                <% application.formData.genres.forEach(function(val) { %>
+                <% if(profile.genres && profile.genres.indexOf(val) > -1) { %>
+                <option value="<%= val %>" selected><%= val %></option>
+                <% } else { %>
+                <option value="<%= val %>"><%= val %></option>
+                <% } %>
+                <% }) %>
+                <% } %>
+            </select>
         </div>
         <div class="col-md-12">
-            <label>Vocals</label>
-                <select name="vocals" multiple>
-                    <% if(application.formData.vocals) { %>
-                    <% application.formData.vocals.forEach(function(val) { %>
-                    <% if(profile.vocals && profile.vocals.indexOf(val) > -1) { %>
-                    <option value="<%= val %>" selected><%= val %></option>
-                    <% } else { %>
-                    <option value="<%= val %>"><%= val %></option>
-                    <% } %>
-                    <% }) %>
-                    <% } %>
-                </select>
-            
+            <label for="vocals">Vocals</label>
+            <select name="vocals" multiple class="form-control">
+                <% if(application.formData.vocals) { %>
+                <% application.formData.vocals.forEach(function(val) { %>
+                <% if(profile.vocals && profile.vocals.indexOf(val) > -1) { %>
+                <option value="<%= val %>" selected><%= val %></option>
+                <% } else { %>
+                <option value="<%= val %>"><%= val %></option>
+                <% } %>
+                <% }) %>
+                <% } %>
+            </select>
         </div>
         <div class="col-md-12">
-            <label>Instruments</label>
-                <select name="instruments" multiple>
-                    <% if(application.formData.instruments) { %>
-                    <% application.formData.instruments.forEach(function(val) { %>
-                    <% if(profile.instruments && profile.instruments.indexOf(val) > -1) { %>
-                    <option value="<%= val %>" selected><%= val %></option>
-                    <% } else { %>
-                    <option value="<%= val %>"><%= val %></option>
-                    <% } %>
-                    <% }) %>
-                    <% } %>
-                </select>
-            
+            <label for="instruments">Instruments</label>
+            <select name="instruments" multiple class="form-control">
+                <% if(application.formData.instruments) { %>
+                <% application.formData.instruments.forEach(function(val) { %>
+                <% if(profile.instruments && profile.instruments.indexOf(val) > -1) { %>
+                <option value="<%= val %>" selected><%= val %></option>
+                <% } else { %>
+                <option value="<%= val %>"><%= val %></option>
+                <% } %>
+                <% }) %>
+                <% } %>
+            </select>
         </div>
     </div>
     <div class="container">
         <div class="col-md-12">
-            <label>Photo</label>
-                <input type="text" value="<%= profile.profile_picture %>" name="profile_picture">
+            <label for="">Photo</label>
+            <input type="text" value="<%= profile.profile_picture %>" name="profile_picture">
         </div>
         <div class="col-md-12">
             <input type="submit" class="btn btn-default" value="Update Profile">
