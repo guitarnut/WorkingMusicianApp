@@ -4,6 +4,7 @@
 
 let database = require('../database');
 let schema = require('../schema/profile/profile_schema');
+let error = require('../../constants/error_messages');
 
 function stringifyArrayData(data) {
     let arrays = schema.arrays();
@@ -29,12 +30,12 @@ module.exports = {
                     }
 
                     if (rows.length === 0) {
-                        reject(new Error('Profile does not exist'));
+                        reject(new Error(error.SERVER.PROFILE.DOES_NOT_EXIST));
                         return;
                     }
 
                     if (rows.length > 1) {
-                        reject(new Error('Multiple profiles for that ID exist'));
+                        reject(new Error(error.SERVER.PROFILE.MULTIPLE_FOUND));
                         return;
                     }
 
@@ -62,12 +63,12 @@ module.exports = {
                     }
 
                     if (rows.length === 0) {
-                        reject(new Error('Profile does not exist'));
+                        reject(new Error(error.SERVER.PROFILE.DOES_NOT_EXIST));
                         return;
                     }
 
                     if (rows.length > 1) {
-                        reject(new Error('Multiple profiles for that ID exist'));
+                        reject(new Error(error.SERVER.PROFILE.MULTIPLE_FOUND));
                         return;
                     }
 

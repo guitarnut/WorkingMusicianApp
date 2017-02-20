@@ -4,7 +4,8 @@
 
 // TODO: Encript URL ID values
     // TODO: Join dates
-    // TODO: Gather search stats
+    // TODO: Gather stats
+    // TODO: Admin approval
 
 let express = require("express");
 let session = require('express-session');

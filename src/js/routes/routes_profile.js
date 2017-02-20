@@ -108,7 +108,7 @@ api.post("/update/:profile_id", (req, res) => {
 api.get("/delete/:profile_id", (req, res) => {
     profileDB.deleteProfile(req.params.profile_id)
         .then(() => {
-            res.redirect('/deleted');
+            res.redirect('/profile/deleted');
         })
         .catch((ex) => {
             req.app.locals.serverError = ex.toString();

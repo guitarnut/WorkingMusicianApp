@@ -6,6 +6,7 @@ let express = require('express');
 let session = require('express-session');
 let api = express.Router();
 let userDB = require('../data/queries/login');
+let error = require('../constants/error_messages');
 
 function loginSuccess(username, req, res, userId) {
     req.app.locals.userId = userId;
@@ -56,7 +57,7 @@ api.post("/", (req, res) => {
                         loginSuccess(data.username, req, res, data.userId);
                     })
                     .catch((ex) => {
-                        if (ex === "This username has already been taken.") {
+                        if (ex === error.SERVER.LOGIN.USERNAME_TAKEN) {
                             loginFailure(ex, req, res);
                         } else {
                             serverError(ex, req, res);
@@ -64,7 +65,7 @@ api.post("/", (req, res) => {
                     });
             })
             .catch((ex) => {
-                if (ex === "This username has already been taken.") {
+                if (ex === error.SERVER.LOGIN.USERNAME_TAKEN) {
                     loginFailure(ex, req, res);
                 } else {
                     serverError(ex, req, res);
@@ -79,7 +80,7 @@ api.post("/", (req, res) => {
             loginSuccess(data.username, req, res, data.userId);
         })
         .catch((ex) => {
-            if (ex === "Invalid credentials.") {
+            if (ex === error.SERVER.LOGIN.INVALID_CREDENTIALS) {
                 loginFailure(ex, req, res);
             } else {
                 serverError(ex, req, res);

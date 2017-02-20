@@ -3,6 +3,7 @@
  */
 
 let database = require('../database');
+let error = require('../../constants/error_messages');
 
 module.exports = {
 
@@ -20,12 +21,12 @@ module.exports = {
                     }
 
                     if (rows.length === 0) {
-                        reject("Invalid credentials.");
+                        reject(error.SERVER.LOGIN.INVALID_CREDENTIALS);
                         return;
                     }
 
                     if (rows.length > 1) {
-                        reject("Multiple profiles for that user exist");
+                        reject(error.SERVER.LOGIN.MULTIPLE_FOUND);
                         return;
                     }
 
@@ -50,7 +51,7 @@ module.exports = {
                     if (err) {
                         reject(err);
                     } else if (rows.length >= 1) {
-                        reject("This username has already been taken.");
+                        reject(error.SERVER.LOGIN.USERNAME_TAKEN);
                     } else {
                         resolve();
                     }

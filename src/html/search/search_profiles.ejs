@@ -2,11 +2,9 @@
 <div class="container">
     <div class="col-md-12">
         <h3>Search Musicians</h3>
-        <% if(pageErrorMessage) { %>
-        <p class="bg-primary"><%= pageErrorMessage %></p>
-        <% } %>
         <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
     </div>
+    <% include ../static/error_message %>
     <form method="post" role="form">
         <% if(application.formData.availability) { %>
         <div class="col-md-4">
