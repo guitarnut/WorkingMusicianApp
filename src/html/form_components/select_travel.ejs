@@ -1,0 +1,12 @@
+<div class="form-group">
+    <label for="travel">Travel</label>
+    <select name="travel" class="form-control">
+        <% application.formData.travel.forEach(function(val) { %>
+        <% if(profile.travel && profile.travel.indexOf(val) > -1) { %>
+        <option value="<%= val %>" selected><%= val %></option>
+        <% } else { %>
+        <option value="<%= val %>"><%= val %></option>
+        <% } %>
+        <% }) %>
+    </select>
+</div>

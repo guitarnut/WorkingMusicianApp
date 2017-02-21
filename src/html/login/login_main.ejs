@@ -6,10 +6,10 @@
         <form method="post" role="form">
             <div class="form-group">
                 <label for="username_existing">Email</label>
-                <input type="text" placeholder="Email" name="username_existing" class="form-control">
+                <input type="text" placeholder="Email" name="username_existing" class="form-control" required>
 
                 <label for="password_existing">Password</label>
-                <input type="password" placeholder="Password" name="password_existing" class="form-control">
+                <input type="password" placeholder="Password" name="password_existing" class="form-control" required>
 
                 <input type="submit" class="btn btn-default" value="Login">
             </div>
@@ -21,10 +21,10 @@
         <form method="post" role="form">
             <div class="form-group">
                 <label for="username_new">Email</label>
-                <input type="text" placeholder="Email" name="username_new" class="form-control">
+                <input type="text" placeholder="Email" name="username_new" class="form-control" required>
 
                 <label for="password_new">Password</label>
-                <input type="password" placeholder="Password" name="password_new" class="form-control">
+                <input type="password" placeholder="Password" name="password_new" class="form-control" required>
                 <input type="hidden" value="true" name="newUser">
 
                 <input type="submit" class="btn btn-default" value="Create Profile">

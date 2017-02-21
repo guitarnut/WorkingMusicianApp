@@ -115,8 +115,6 @@ module.exports = {
         connection.connect();
         stringifyArrayData(data);
 
-        console.log(data);
-
         return new Promise((resolve, reject) => {
             try {
                 connection.query('UPDATE profiles SET ? WHERE id=' + id, data, (err, result) => {

@@ -1,0 +1,12 @@
+<div class="form-group">
+    <label for="profession">Profession</label>
+    <select name="profession" class="form-control">
+        <% application.formData.profession.forEach(function(val) { %>
+        <% if(profile.profession && profile.profession.indexOf(val) > -1) { %>
+        <option value="<%= val %>" selected><%= val %></option>
+        <% } else { %>
+        <option value="<%= val %>"><%= val %></option>
+        <% } %>
+        <% }) %>
+    </select>
+</div>

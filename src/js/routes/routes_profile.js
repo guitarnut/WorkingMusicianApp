@@ -86,7 +86,9 @@ api.get("/update/:profile_id", (req, res) => {
     profileDB.getProfile(req.params.profile_id, req.app.locals.userId)
         .then((data) => {
             req.app.locals.profile = data;
-            res.render('profile/profile_update');
+            res.render('profile/profile_update', {
+                profileUpdate: true
+            });
         })
         .catch((ex) => {
             req.app.locals.serverError = ex.toString();

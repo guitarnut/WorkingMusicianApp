@@ -1,0 +1,12 @@
+<div class="form-group">
+    <label for="instruments">Instruments</label>
+    <select name="instruments" multiple class="form-control">
+        <% application.formData.instruments.forEach(function(val) { %>
+        <% if(profile.instruments && profile.instruments.indexOf(val) > -1) { %>
+        <option value="<%= val %>" selected><%= val %></option>
+        <% } else { %>
+        <option value="<%= val %>"><%= val %></option>
+        <% } %>
+        <% }) %>
+    </select>
+</div>

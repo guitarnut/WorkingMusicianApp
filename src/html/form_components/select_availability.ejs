@@ -1,0 +1,12 @@
+<div class="form-group">
+    <label for="availability">Availability</label>
+    <select name="availability" class="form-control">
+        <% application.formData.availability.forEach(function(val) { %>
+        <% if(profile.availability && profile.availability === val) { %>
+        <option value="<%= val %>" selected><%= val %></option>
+        <% } else { %>
+        <option value="<%= val %>"><%= val %></option>
+        <% } %>
+        <% }) %>
+    </select>
+</div>
